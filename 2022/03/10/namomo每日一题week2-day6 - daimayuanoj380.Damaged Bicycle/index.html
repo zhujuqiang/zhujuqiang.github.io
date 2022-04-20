@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>namomo每日一题week2-day6 - daimayuanoj380.Damaged Bicycle - ACM狗都不打</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Damaged Bicycle题意给你一张N个点，M条边的图，其中K个点有共享单车，每辆单车有p[i]的概率是坏的。走路的速度是t，骑车的速度是r。问你从1号点走到N号点的最小期望时间是多少。
+思路,"> 
+    <meta name="author" content="Pigstar"> 
+    <link rel="alternative" href="atom.xml" title="ACM狗都不打" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="namomo每日一题week2-day6 - daimayuanoj380.Damaged Bicycle - ACM狗都不打"/>
+    <meta name="twitter:description" content="Damaged Bicycle题意给你一张N个点，M条边的图，其中K个点有共享单车，每辆单车有p[i]的概率是坏的。走路的速度是t，骑车的速度是r。问你从1号点走到N号点的最小期望时间是多少。
+思路,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="ACM狗都不打"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="namomo每日一题week2-day6 - daimayuanoj380.Damaged Bicycle - ACM狗都不打"/>
+    <meta property="og:description" content="Damaged Bicycle题意给你一张N个点，M条边的图，其中K个点有共享单车，每辆单车有p[i]的概率是坏的。走路的速度是t，骑车的速度是r。问你从1号点走到N号点的最小期望时间是多少。
+思路,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">ACM狗都不打</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">namomo每日一题week2-day6 - daimayuanoj380.Damaged Bicycle</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">namomo每日一题week2-day6 - daimayuanoj380.Damaged Bicycle</h1>
+        <div class="stuff">
+            <span>三月 10, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Damaged-Bicycle"><a href="#Damaged-Bicycle" class="headerlink" title="Damaged Bicycle"></a><a target="_blank" rel="noopener" href="http://oj.daimayuan.top/course/10/problem/380">Damaged Bicycle</a></h1><h1 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h1><p>给你一张N个点，M条边的图，其中K个点有共享单车，每辆单车有p[i]的概率是坏的。走路的速度是t，骑车的速度是r。问你从1号点走到N号点的最小期望时间是多少。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ul>
+<li>生活常识，骑车的速度比走路快，所以为了时间最小，一旦我们成功骑到车我们将沿着最短路走到终点。而在此之前我们都是走路。</li>
+<li>走的路全部都是最短路，所以我们要预处理起点，终点，有车点到其他点的最短路。</li>
+<li>用dp[S][i]状压代表S二进制中1的单车都坏了的情况下当前在i到终点还需要的时间的最小期望。</li>
+<li>转移方程<ol>
+<li>车是好的，直接骑到终点。t_car</li>
+<li>车是坏的<ul>
+<li>走到还没确认好坏的车那里</li>
+<li>走路到终点</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p>答案是1+min（2）</p>
+<ul>
+<li>dp[s][i] = dp[s | (1 &lt;&lt; j)][j] + d[i][j] / v_walk;</li>
+<li>最后枚举在哪个点扫到车就好了，时间是d[k][i] / t_walk + dp[1&lt;&lt;i][i];</li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&quot;\n&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(args...) &#123; string _s = #args; replace(_s.begin(), _s.end(), <span class="meta-string">&#x27;,&#x27;</span>, <span class="meta-string">&#x27; &#x27;</span>); stringstream _ss(_s); istream_iterator<span class="meta-string">&lt;string&gt;</span> _it(_ss); err(_it, args); &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">err</span><span class="params">(istream_iterator&lt;string&gt; it)</span> </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">err</span><span class="params">(istream_iterator&lt;string&gt; it, T a, Args... args)</span> </span>&#123;</span><br><span class="line">	cerr &lt;&lt; *it &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">	<span class="built_in">err</span>(++it, args...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qmi</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> k, <span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">int</span> res = <span class="number">1</span>;<span class="keyword">while</span> (k)&#123;<span class="keyword">if</span> (k &amp; <span class="number">1</span>) res = (ll)res * a % p;a = (ll)a * a % p;k &gt;&gt;= <span class="number">1</span>;&#125;<span class="keyword">return</span> res;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qpow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">int</span> res = <span class="number">1</span>;<span class="keyword">while</span>(b)&#123;<span class="keyword">if</span>(b&amp;<span class="number">1</span>) res *= a;b&gt;&gt;=<span class="number">1</span>;a*=a;&#125;<span class="keyword">return</span> res;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mo</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">return</span> x = ((x%p)+p)%p;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> b?<span class="built_in">gcd</span>(b,a%b):a;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">5e5</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-6</span>;</span><br><span class="line"><span class="keyword">int</span> dx[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;, dy[] = &#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T = <span class="number">1</span>,N,M,K,Q;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> e[maxm],w[maxm],ne[maxm],h[maxn],idx;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	e[idx] = b, ne[idx] = h[a], h[a] = idx ++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">	e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx ++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dis[maxn];</span><br><span class="line"><span class="keyword">int</span> d[<span class="number">21</span>][<span class="number">21</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">0x3f</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(dis));</span><br><span class="line">	<span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">st</span><span class="params">(maxn+<span class="number">7</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">	dis[u] = <span class="number">0</span>;</span><br><span class="line">	priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; , vector&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt;, greater&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt;&gt; heap;</span><br><span class="line">	heap.<span class="built_in">push</span>(&#123;<span class="number">0</span>, u&#125;);      <span class="comment">// first存储距离，second存储节点编号</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (heap.<span class="built_in">size</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> t = heap.<span class="built_in">top</span>();</span><br><span class="line">        heap.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ver = t.second, distance = t.first;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (st[ver]) <span class="keyword">continue</span>;</span><br><span class="line">        st[ver] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = h[ver]; i != <span class="number">-1</span>; i = ne[i])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j = e[i];</span><br><span class="line">            <span class="keyword">if</span> (dis[j] &gt; distance + w[i])</span><br><span class="line">            &#123;</span><br><span class="line">                dis[j] = distance + w[i];</span><br><span class="line">                heap.<span class="built_in">push</span>(&#123;dis[j], j&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> dp[<span class="number">1</span>&lt;&lt;<span class="number">20</span>][<span class="number">18</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(h,<span class="number">-1</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>)*(maxn));</span><br><span class="line">	<span class="keyword">int</span> t, r;</span><br><span class="line">	cin &gt;&gt; t &gt;&gt; r;</span><br><span class="line">	cin &gt;&gt; N &gt;&gt; M;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> u, v, w;</span><br><span class="line">		cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">		<span class="built_in">add</span>(u, v, w);</span><br><span class="line">		<span class="built_in">add</span>(v, u, w);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	cin &gt;&gt; K;</span><br><span class="line">	<span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">a</span><span class="params">(K + <span class="number">2</span>)</span>, <span class="title">p</span><span class="params">(K)</span></span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i ++) &#123;</span><br><span class="line">		cin &gt;&gt; a[i] &gt;&gt; p[i];</span><br><span class="line">	&#125;</span><br><span class="line">	a[K] = <span class="number">1</span>;</span><br><span class="line">	a[K + <span class="number">1</span>] = N;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K + <span class="number">2</span>; i ++) &#123;</span><br><span class="line">		<span class="built_in">dijkstra</span>(a[i]);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; K + <span class="number">2</span>; j ++) &#123;</span><br><span class="line">			d[i][j] = dis[a[j]];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (d[K][K + <span class="number">1</span>] == INF) &#123;</span><br><span class="line">		cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> S = (<span class="number">1</span> &lt;&lt; K) - <span class="number">1</span>; S &gt;= <span class="number">0</span>; S --) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i ++) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((S &gt;&gt; i) &amp; <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">double</span> pbad = <span class="number">0.01</span> * p[i];</span><br><span class="line">				<span class="keyword">double</span> t_car = <span class="number">1.</span> * d[i][K + <span class="number">1</span>] / r;<span class="comment">//开车到终点</span></span><br><span class="line">				<span class="keyword">double</span> t_walk = <span class="number">1.</span> * d[i][K + <span class="number">1</span>] / t;<span class="comment">//走路到终点</span></span><br><span class="line">				</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; K; j ++) &#123;</span><br><span class="line">					<span class="keyword">if</span> ((S &gt;&gt; j) &amp; <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">					t_walk = <span class="built_in">min</span>(t_walk, <span class="number">1.</span> * d[i][j] / t + dp[S | (<span class="number">1</span> &lt;&lt; j)][j]);</span><br><span class="line">				&#125;</span><br><span class="line">				dp[S][i] = pbad * t_walk + (<span class="number">1</span> - pbad) * t_car;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">double</span> ans = <span class="number">1.</span> * d[K][K + <span class="number">1</span>] / t;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i ++) &#123;</span><br><span class="line">		ans = <span class="built_in">min</span>(ans, <span class="number">1.</span> * d[K][i] / t + dp[<span class="number">1</span> &lt;&lt; i][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%.7lf&quot;</span>,ans);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// cin &gt;&gt; T;</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= T; i ++) <span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">return</span> (<span class="number">0</span><span class="number">-0</span>); <span class="comment">//&lt;3</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

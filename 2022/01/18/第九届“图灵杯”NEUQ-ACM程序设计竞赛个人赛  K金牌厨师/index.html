@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>第九届“图灵杯”NEUQ-ACM程序设计竞赛个人赛  K金牌厨师 - ACM狗都不打</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="题目描述Phenix作为食堂的金牌厨师，每天的工作是为同学们准备饭菜，Phenix做出的每一种菜都有一个辣度值，范围是[1,n][1,n]。作为厨师，Phenix提前了解了m位同学的辣度接受范围，第,"> 
+    <meta name="author" content="Pigstar"> 
+    <link rel="alternative" href="atom.xml" title="ACM狗都不打" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="第九届“图灵杯”NEUQ-ACM程序设计竞赛个人赛  K金牌厨师 - ACM狗都不打"/>
+    <meta name="twitter:description" content="题目描述Phenix作为食堂的金牌厨师，每天的工作是为同学们准备饭菜，Phenix做出的每一种菜都有一个辣度值，范围是[1,n][1,n]。作为厨师，Phenix提前了解了m位同学的辣度接受范围，第,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="ACM狗都不打"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="第九届“图灵杯”NEUQ-ACM程序设计竞赛个人赛  K金牌厨师 - ACM狗都不打"/>
+    <meta property="og:description" content="题目描述Phenix作为食堂的金牌厨师，每天的工作是为同学们准备饭菜，Phenix做出的每一种菜都有一个辣度值，范围是[1,n][1,n]。作为厨师，Phenix提前了解了m位同学的辣度接受范围，第,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">ACM狗都不打</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">第九届“图灵杯”NEUQ-ACM程序设计竞赛个人赛  K金牌厨师</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">第九届“图灵杯”NEUQ-ACM程序设计竞赛个人赛  K金牌厨师</h1>
+        <div class="stuff">
+            <span>一月 18, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p><strong>题目描述</strong><br>Phenix作为食堂的金牌厨师，每天的工作是为同学们准备饭菜，Phenix做出的每一种菜都有一个辣度值，范围是[1,n][1,n]。作为厨师，Phenix提前了解了m位同学的辣度接受范围，第i位同学的辣度接受范围被描述为$$$[l_i,r_i]$$$，表示该同学可以接受辣度值位于这个区间的菜。由于众口难调，每天Phenix会选出部分同学，做出能让这部分同学都接受的辣度的菜。Phenix作为金牌厨师对每天工作的满意程度定义为选出的同学的人数kk和能让这部分同学都接受的菜的种类数xx（这里理解为一种辣度对应一种菜）两者中的最小值，即min(k,x)。(1&lt;=n,m&lt;=300000)。</p>
+<p>现在你需要想办法让Phenix的满意程度最大。</p>
+<p><strong>输入描述:</strong><br>第一行两个整数n,m，表示菜的辣度最大值和同学的人数(1&lt;=n,m&lt;=300000)。</p>
+<p>接下来m行,每行两个整数$$$[l_i,r_i]$$$依次表示第i个同学的辣度接受范围(1&lt;=$$$[l_i,r_i]$$$&lt;=n)</p>
+<p><strong>输出描述:</strong><br>一行，表示满意度的最大值。</p>
+<p><strong>思路：</strong><br>二分min(k,x)<br>check：如果所有同学中有大于等于mid人共同覆盖的区间大于等于mid则return 1；否则return 0。</p>
+<p><strong>代码</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IOS ios::sync_with_stdio(false);cin.tie(0);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,b) memset(a,b,sizeof a)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PII pair<span class="meta-string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI acos(-1.0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lcm(a,b) a/gcd(a,b)*b</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(a) cerr&lt;&lt;#a&lt;&lt;<span class="meta-string">&quot;=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Adebug(a,i) cerr&lt;&lt;#a&lt;&lt;<span class="meta-string">&quot;[&quot;</span>&lt;&lt;i&lt;&lt;<span class="meta-string">&quot;]=&quot;</span>&lt;&lt;a[i]&lt;&lt;endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i, a, b) for(int i = (a); i &lt;= (b); i ++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i, a, b) for(int i = (a); i &gt;= (b); i --)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> vi vector<span class="meta-string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> vpii vector<span class="meta-string">&lt;PII&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rvs(s) reverse(s.begin(),s.end())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> all(s) s.begin(),s.end()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(s) (int)(s.size())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lb(s) ((s) &amp; (-s))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mk(s, t) make_pair(s, t)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CN puts(<span class="meta-string">&quot;NO&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CY puts(<span class="meta-string">&quot;YES&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wt</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;cout &lt;&lt; x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wtl</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;cout &lt;&lt; x &lt;&lt; endl;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wtb</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;cout &lt;&lt; x &lt;&lt; <span class="string">&#x27; &#x27;</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wt</span><span class="params">(<span class="keyword">char</span> x)</span></span>&#123;cout &lt;&lt; x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wtl</span><span class="params">(<span class="keyword">char</span> x)</span></span>&#123;cout &lt;&lt; x &lt;&lt; endl;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wtb</span><span class="params">(<span class="keyword">char</span> x)</span></span>&#123;cout &lt;&lt; x &lt;&lt; <span class="string">&#x27; &#x27;</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wt</span><span class="params">(string x)</span></span>&#123;cout &lt;&lt; x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wtl</span><span class="params">(string x)</span></span>&#123;cout &lt;&lt; x &lt;&lt; endl;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">wtb</span><span class="params">(string x)</span></span>&#123;cout &lt;&lt; x &lt;&lt; <span class="string">&#x27; &#x27;</span>;&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">bool</span> <span class="title">ckmax</span><span class="params">(T &amp;x, T y)</span></span>&#123;<span class="keyword">return</span> x &lt; y ? x = y, <span class="literal">true</span> : <span class="literal">false</span>;&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">bool</span> <span class="title">ckmin</span><span class="params">(T &amp;x, T y)</span></span>&#123;<span class="keyword">return</span> x &gt; y ? x = y, <span class="literal">true</span> : <span class="literal">false</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qmi</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> k, <span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">int</span> res = <span class="number">1</span>;<span class="keyword">while</span> (k)&#123;<span class="keyword">if</span> (k &amp; <span class="number">1</span>) res = (ll)res * a % p;a = (ll)a * a % p;k &gt;&gt;= <span class="number">1</span>;&#125;<span class="keyword">return</span> res;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qpow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">int</span> res = <span class="number">1</span>;<span class="keyword">while</span>(b)&#123;<span class="keyword">if</span>(b&amp;<span class="number">1</span>) res *= a;b&gt;&gt;=<span class="number">1</span>;a*=a;&#125;<span class="keyword">return</span> res;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mo</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">return</span> x = ((x%p)+p)%p;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> b?<span class="built_in">gcd</span>(b,a%b):a;&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> dx[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;, dy[] = &#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> fact[maxn], infact[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">jie_init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	fact[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">rep</span>(i,<span class="number">1</span>,n) fact[i] = fact[i<span class="number">-1</span>] * i % mod;	</span><br><span class="line">	infact[n] = <span class="built_in">qmi</span>(fact[n],mod<span class="number">-2</span>,mod);</span><br><span class="line">	<span class="built_in">per</span>(i,n<span class="number">-1</span>,<span class="number">0</span>) infact[i] = infact[i+<span class="number">1</span>] * (i+<span class="number">1</span>) % mod;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;<span class="keyword">return</span> fact[n] * infact[m] % mod * infact[n-m] % mod;&#125;</span><br><span class="line"><span class="keyword">int</span> T = <span class="number">1</span>,N,M,K;</span><br><span class="line"><span class="keyword">int</span> A[maxn],B[maxn],dp[maxn],f[maxn];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	cin &gt;&gt; N &gt;&gt; M;</span><br><span class="line">	vector&lt;PII&gt; stu;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> l = <span class="number">1</span>, r = <span class="built_in">min</span>(N,M);</span><br><span class="line">	<span class="keyword">while</span> (M--) &#123;</span><br><span class="line">		<span class="keyword">int</span> l, r;</span><br><span class="line">		 cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">		 stu.<span class="built_in">pb</span>(<span class="built_in">mk</span>(l,r));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	function&lt;<span class="built_in"><span class="keyword">int</span></span>(<span class="keyword">int</span>)&gt; check = [&amp;](<span class="keyword">int</span> x)&#123;</span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">		<span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">st</span><span class="params">(N+<span class="number">7</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stu.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">			<span class="keyword">int</span> len = stu[i].second - stu[i].first + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (len &gt;= x) &#123;</span><br><span class="line">				k ++;</span><br><span class="line">				st[stu[i].fi+x<span class="number">-1</span>] ++;</span><br><span class="line">				st[stu[i].se+<span class="number">1</span>] --;</span><br><span class="line">				<span class="comment">/*</span></span><br><span class="line"><span class="comment">				用差分对区间加1</span></span><br><span class="line"><span class="comment">				加了一说明这个位置往前x个都被当前同学覆盖了</span></span><br><span class="line"><span class="comment">				*/</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i ++) &#123;</span><br><span class="line">			st[i] += st[i<span class="number">-1</span>];</span><br><span class="line">			<span class="keyword">if</span> (st[i] &gt;= x) <span class="keyword">return</span> <span class="number">1</span>;<span class="comment">//说明当前位置往前x个被大于等于x个同学覆盖</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">check</span>(mid)) ans = mid,l = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> r = mid;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; ans;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	IOS</span><br><span class="line">	<span class="comment">// cin &gt;&gt; T;</span></span><br><span class="line">	<span class="keyword">while</span>(T--) <span class="built_in">solve</span>();</span><br><span class="line">  <span class="keyword">return</span> (<span class="number">0</span><span class="number">-0</span>); <span class="comment">//&lt;3</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

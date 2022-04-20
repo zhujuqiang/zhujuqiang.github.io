@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Codeforces Round 769 (Div. 2) E2. Distance Tree (hard version) - ACM狗都不打</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="题意：-给你一棵树，每条边的权值为1，你可以随便连一条权值为x的边，求任何一点到1号点距离的最大值的最小值。对于x=[1,N]的每一个数输出一个值。
+
+思路：-
+
+用d[i]表示深度大于i的两个点的,"> 
+    <meta name="author" content="Pigstar"> 
+    <link rel="alternative" href="atom.xml" title="ACM狗都不打" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Codeforces Round 769 (Div. 2) E2. Distance Tree (hard version) - ACM狗都不打"/>
+    <meta name="twitter:description" content="题意：-给你一棵树，每条边的权值为1，你可以随便连一条权值为x的边，求任何一点到1号点距离的最大值的最小值。对于x=[1,N]的每一个数输出一个值。
+
+思路：-
+
+用d[i]表示深度大于i的两个点的,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="ACM狗都不打"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Codeforces Round 769 (Div. 2) E2. Distance Tree (hard version) - ACM狗都不打"/>
+    <meta property="og:description" content="题意：-给你一棵树，每条边的权值为1，你可以随便连一条权值为x的边，求任何一点到1号点距离的最大值的最小值。对于x=[1,N]的每一个数输出一个值。
+
+思路：-
+
+用d[i]表示深度大于i的两个点的,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">ACM狗都不打</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Codeforces Round 769 (Div. 2) E2. Distance Tree (hard version)</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Codeforces Round 769 (Div. 2) E2. Distance Tree (hard version)</h1>
+        <div class="stuff">
+            <span>二月 03, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p><strong>题意：</strong><br>-<br>给你一棵树，每条边的权值为1，你可以随便连一条权值为x的边，求任何一点到1号点距离的最大值的最小值。对于x=[1,N]的每一个数输出一个值。</p>
+<hr>
+<p><strong>思路：</strong><br>-</p>
+<ul>
+<li>用d[i]表示深度大于i的两个点的对大距离，这可以用dfs来实现，就是每个节点子树中的前二大的深度，计作x，y，那么可以更新d[min(x,y)-1],当我们取一遍后缀max后相当于i小于min(x,y)的d[i]都被更新了，符合我们对d数组的定义。</li>
+<li>原来树中的最大深度就是答案的最大值，不会比它更大，因为可以完全不走新加的那条边。</li>
+<li>新加的边一定是根结点和某个点连。</li>
+<li>当x增加的时候，ans必然不会减少。因为我们把路径分为两类，第一类是经过新加边的，第二类是只经过原来的边的。随着x的增加一个节点到1号点的距离会不断从第一类到第二类。而第一类是随着x增加的，第二类是固定的他比之前的第一类大，比后来的第一类小。这样就可以双指针x和ans了。</li>
+</ul>
+<p><strong>代码</strong><br>-<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PII pair<span class="meta-string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ull unsigned long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI acos(-1.0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lcm(a,b) a/gcd(a,b)*b</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(a) cout&lt;&lt;#a&lt;&lt;<span class="meta-string">&quot; = &quot;</span>&lt;&lt;a&lt;&lt;endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug2(a,b) cout&lt;&lt;#a&lt;&lt;<span class="meta-string">&quot; = &quot;</span>&lt;&lt;a&lt;&lt;<span class="meta-string">&quot;-----&quot;</span>&lt;&lt;#b&lt;&lt;<span class="meta-string">&quot; = &quot;</span>&lt;&lt;b&lt;&lt;endl;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> all(s) s.begin(),s.end()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(s) (int)(s.size())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lb(s) ((s) &amp; (-s))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mk(s, t) make_pair(s, t)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qmi</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> k, <span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">int</span> res = <span class="number">1</span>;<span class="keyword">while</span> (k)&#123;<span class="keyword">if</span> (k &amp; <span class="number">1</span>) res = (ll)res * a % p;a = (ll)a * a % p;k &gt;&gt;= <span class="number">1</span>;&#125;<span class="keyword">return</span> res;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">qpow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">int</span> res = <span class="number">1</span>;<span class="keyword">while</span>(b)&#123;<span class="keyword">if</span>(b&amp;<span class="number">1</span>) res *= a;b&gt;&gt;=<span class="number">1</span>;a*=a;&#125;<span class="keyword">return</span> res;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mo</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">return</span> x = ((x%p)+p)%p;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> b?<span class="built_in">gcd</span>(b,a%b):a;&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-6</span>;</span><br><span class="line"><span class="keyword">int</span> dx[] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;, dy[] = &#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T = <span class="number">1</span>,N,M,K,Q;</span><br><span class="line"><span class="keyword">int</span> a[maxn],f[maxn],b[maxn],d[maxn],u[maxn];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; G[<span class="number">4000</span>];</span><br><span class="line">PII v[maxn];</span><br><span class="line"><span class="keyword">int</span> mmax;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span> <span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa, <span class="keyword">int</span> a[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = a[u], y = a[u];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j : G[u]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (j == fa) <span class="keyword">continue</span>;</span><br><span class="line">		a[j] = a[u] + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> t = <span class="built_in">dfs</span>(j,u,a);</span><br><span class="line">		<span class="keyword">if</span> (t &gt; x) &#123;</span><br><span class="line">			y = x;</span><br><span class="line">			x = t;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (t &gt; y) &#123;</span><br><span class="line">			y = t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i = <span class="built_in">min</span>(x,y) - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		d[i] = <span class="built_in">max</span>(d[i], x + y - <span class="number">2</span> * a[u] + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">	<span class="comment">// return 0;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin &gt;&gt; N;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i ++) &#123;</span><br><span class="line">		G[i].<span class="built_in">clear</span>();</span><br><span class="line">		d[i] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i ++) &#123;</span><br><span class="line">		<span class="keyword">int</span> a, b;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		G[a].<span class="built_in">pb</span>(b);</span><br><span class="line">		G[b].<span class="built_in">pb</span>(a);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> x = <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">-1</span>,a);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = N<span class="number">-2</span>; i &gt;= <span class="number">0</span>; i --) &#123;</span><br><span class="line">		d[i] = <span class="built_in">max</span>(d[i],d[i+<span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i ++) &#123;</span><br><span class="line">		<span class="comment">//ans&lt;x因为答案不能超过原来树的最大深度</span></span><br><span class="line">		<span class="comment">//深度小于等于ans的节点可以不用经过新加的边</span></span><br><span class="line">		<span class="comment">//深度大于ans的点只要那两个深度前二大的满足其他点也满足。</span></span><br><span class="line">		<span class="comment">//我们只需要连到那两个点的中点看是否满足（d[ans]/2+i &lt;= ans）</span></span><br><span class="line">		<span class="keyword">while</span>(ans &lt; x &amp;&amp; d[ans]/<span class="number">2</span>+i &gt; ans) ans ++;</span><br><span class="line">		cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	cin &gt;&gt; T;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= T; i ++) <span class="built_in">solve</span>();</span><br><span class="line">  	<span class="keyword">return</span> (<span class="number">0</span><span class="number">-0</span>); <span class="comment">//&lt;3</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
